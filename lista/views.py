@@ -78,8 +78,15 @@ def cadastrar(request):
 		acao = request.POST['acao']
 		instituicao = request.POST['instituicao']
 		situacao = request.POST['situacao']
-		
-		if 11 <= hora1 < 20:
+
+		if hora1 == 19:
+			lista0 = Aluno.objects.all().filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
+			lista1 = Aluno.objects.all().filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
+			lista2 = Aluno.objects.all().filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
+			lista3 = Aluno.objects.all().filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
+			return render(request, 'main.html',{'alerta3':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
+
+		if 11 <= hora1 <= 18:
 			lista0 = Aluno.objects.all().filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
 			lista1 = Aluno.objects.all().filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
 
