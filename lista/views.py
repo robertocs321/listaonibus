@@ -18,9 +18,30 @@ def listar (request):
 
 	lista2 = Aluno.objects.all().filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
 	lista3 = Aluno.objects.all().filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
-
-
-	return render (request, 'main.html', {"cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})	
+	lista4 = Aluno.objects.all().filter(acao=Aluno.IDA)
+	lista5 = Aluno.objects.all().filter(acao=Aluno.VOLTA)
+	aux=0
+	aux2=0
+	cor="success"
+	classe='smile'
+	for x in lista4:
+		aux = aux+1
+	for y in lista5:
+		aux2 = aux2+1
+	if aux>29:
+		cor="danger"
+		classe='frown'
+	if aux2>29:
+		cor="danger"
+		classe='frown'
+	
+	p='pessoas'
+	p2='pessoas'
+	if aux==1:
+		p='pessoa'
+	if aux2==1:
+		p2='pessoa'
+	return render (request, 'main.html', {'pessoa':p,'pessoa2':p2,'classe':classe,'cor':cor,'totali':aux, 'totalv':aux2,"cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})	
 
 def tirar(request, id):
 	aux2=id
