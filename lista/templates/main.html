@@ -17,7 +17,7 @@
       <div class="col-md-12 ">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-2 mb-2">
           
-          <a class="navbar-brand" href="{% url 'menu' %}"><i class="fas fa-bus-alt"></i> Lista bus - Tarde</a>
+          <a class="navbar-brand" href="{% url 'menu' %}"><samp><i class="fas fa-bus-alt"></i></samp> Lista bus - Tarde <samp style="color: yellow"><i class="fas fa-sun"></i></samp></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -28,12 +28,24 @@
                
                 
                 <li class="nav-item">
-                  <a class="btn nav-link text-left" data-toggle="modal" data-target="#exampleModalCenter3"><i class="fas fa-info"></i> NFORMAÇÕES IMPORTANTES </a>
+                  <a class="nav-link text-left" data-toggle="modal" data-target="#exampleModalCenter3"> Informações importantes <i class="fas fa-info-circle"></i></a>
                 
                   
                 </li>
                 <li class="nav-item">
-                  <a class="btn nav-link text-left" href="{% url 'novalista' %}"> Nova lista</a>
+                  <a class="nav-link text-left" href="{% url 'novalista' %}"> Nova lista <i class="fas fa-chevron-circle-right"></i></a>
+                
+                  
+                </li>
+                </li>
+                <li class="nav-item">
+                  <a class=" nav-link text-left" href="#">Lista da Manhã <samp style="color: red"><i class="fas fa-coffee"></i></samp> </a>
+                
+                  
+                </li>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-left" href="#"> Lista da Noite <samp style="color: blue"><i class="fas fa-cloud-moon"></i></samp></a>
                 
                   
                 </li>
@@ -59,12 +71,12 @@
               </div>
               <div class="modal-body" >
 
-                <p><b>01.</b> O sistema não permite que o usuário coloque seu nome na lista, como <b>cadastrado</b>,  entre 11 e 20h.</p>
-                <p><b>02.</b> O aluno que colocou o nome na lista e não for usar o ônibus deve apagar seu nome da lista (na tabela tem uma lixeira no canto direito).</p>
-                <p><b>03.</b> O sistema mostra dois conjuntos de listas, a primeira é a lista de quem irá voltar no ônibus e a outra, que está abaixo, é de quem vai no ônibus. Se você escolher a opção "Ida e volta" o seu nome será colocado nas duas listas.</p>
-                <p><b>04.</b> A lista do dia anterior deve ser apagada manualmente pelos usuários entre 19:00 e 19:59.
+                <p class="lead"><b>01.</b> O sistema não permite que o usuário coloque seu nome na lista, como <b>cadastrado</b>,  entre 11 e 20h.</p>
+                <p class="lead"><b>02.</b> O aluno que colocou o nome na lista e não for usar o ônibus deve apagar seu nome da lista (na tabela tem uma lixeira no canto direito).</p>
+                <p class="lead"><b>03.</b> O sistema mostra dois conjuntos de listas, a primeira é a lista de quem pretende ir (para Caicó) no ônibus e a outra, que está abaixo, é a de quem pretende voltar (para Jardim) no ônibus. Se você escolher a opção "Ida e volta" o seu nome será colocado nas duas listas.</p>
+                <p class="lead"><b>04. <spam style="color: red" >A lista do dia anterior deve ser apagada manualmente pelos usuários entre 19:00 e 19:59.</spam> Para isso, use a opção 'Nova lista' no menu do sistema.</b>
                 </p>
-                <p><b>05.</b> Sistema em fase de testes. Desenvolvido por: Roberto. Duvidas, reclamações ou sugestões: fale com ele.</p>
+                <p class="lead"><b>05.</b> Sistema em fase de testes. Desenvolvido por: Roberto. Duvidas, reclamações ou sugestões: fale com ele.</p>
                 
               </div>
               <div class="modal-footer">
@@ -81,7 +93,7 @@
 <div class="row">
       <div class="col-md-12">
         {% if alerta %}
-          <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+          <div class=" lead alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
             Devido ao horário, seu nome foi adicionado à lista como carona.
           </div>
         {% endif %}
@@ -89,22 +101,22 @@
     
     <div class="col-md-12">
         {% if alerta2 %}
-          <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+          <div class="lead alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
             Esse horário não é permitido para começar uma nova lista! Horário permitido: 19:00 - 19:59.
           </div>
         {% endif %}
       </div>
         <div class="col-md-12">
         {% if alerta3 %}
-          <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+          <div class="lead alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
             Esse horário não é permitido para colocar o nome na lista! 
           </div>
         {% endif %}
       </div>
     <div class="col-md-12">
         {% if totali or totalv %}
-          <div class="alert alert-{{cor}}" role="alert"><i class="far fa-{{classe}}"></i>
-            Até o momento, Ida: {{totali}} {{pessoa}}; Volta: {{totalv}} {{pessoa2}}. 
+          <div class="lead alert alert-{{cor}}" role="alert"><i class="far fa-{{classe}}"></i>
+            Até o momento,<br> Ida: <b>{{totali}}</b> {{pessoa}};<br> Volta: <b>{{totalv}}</b> {{pessoa2}}. 
           </div>
        
         {% endif %}
@@ -119,10 +131,10 @@
 
       <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link " id="home-tab" data-toggle="tab" href="#cl" role="tab" aria-controls="home" aria-selected="false">Colocar o nome na lista</a>
+        <a class="nav-link " id="home-tab" data-toggle="tab" href="#cl" role="tab" aria-controls="home" aria-selected="false"><b>Colocar o nome na lista</b></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#lv" role="tab" aria-controls="profile" aria-selected="true">Ver lista</a>
+        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#lv" role="tab" aria-controls="profile" aria-selected="true"><b>Ver lista</b></a>
       </li>
     
       
@@ -156,7 +168,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% for lista in cadastrados %}
+                        {% for lista in cadastradosi %}
                         <tr class="table-warning">
                           <th scope="row">{{ forloop.counter }}</th>
                           <td >{{ lista.nome }}</td>
@@ -213,7 +225,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% for lista in caronas %}
+                        {% for lista in caronasi %}
                         <tr class="table-danger">
                           <th scope="row">{{ forloop.counter }}</th>
                           
@@ -269,7 +281,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% for lista in cadastradosi %}
+                        {% for lista in cadastrados %}
 
 
 
@@ -329,7 +341,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% for lista in caronasi %}
+                        {% for lista in caronas %}
                         <tr class="table-danger">
                           <th scope="row">{{ forloop.counter }}</th>
                           

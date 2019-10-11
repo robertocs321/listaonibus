@@ -13,11 +13,11 @@ import os
 
 
 def listar (request):
-	lista0 = Aluno.objects.all().filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
-	lista1 = Aluno.objects.all().filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
-	lista2 = Aluno.objects.all().filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
-	lista3 = Aluno.objects.all().filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
-	lista4 = Aluno.objects.all().filter(acao=Aluno.IDA)
+	lista0 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
+	lista1 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
+	lista2 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
+	lista3 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
+	lista4 = Aluno.objects.all().order_by('data').filter(acao=Aluno.IDA)
 	lista5 = Aluno.objects.all().filter(acao=Aluno.VOLTA)
 	aux=0
 	aux2=0
@@ -33,6 +33,9 @@ def listar (request):
 	if aux2>29:
 		cor="danger"
 		classe='frown'
+	if aux==29 or aux2==29:
+		cor="warning"
+		classe='grimace'
 	
 	p='pessoas'
 	p2='pessoas'
