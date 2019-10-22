@@ -13,6 +13,19 @@ import os
 
 
 def listar (request):
+	data_e_hora_atuais = datetime.now()
+	hora = data_e_hora_atuais.strftime('%H')#o %H retorna apenas a hora
+	hora1=int(hora)
+	try:
+		if hora1 == 19:	
+			return redirect('novalista')
+	except :
+		return redirect('menu')
+
+
+
+
+
 	lista0 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
 	lista1 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
 	lista2 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
