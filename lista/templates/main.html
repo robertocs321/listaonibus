@@ -1,7 +1,7 @@
 <html lang="pt-br">
 <head>
   
-  <title>Lista Bus</title>
+  <title>Lista Bus - Tarde</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -76,7 +76,7 @@
                 <p class="lead"><b>03.</b> O sistema mostra dois conjuntos de listas, a primeira é a lista de quem pretende ir (para Caicó) no ônibus e a outra, que está abaixo, é a de quem pretende voltar (para Jardim) no ônibus. Se você escolher a opção "Ida e volta" o seu nome será colocado nas duas listas.</p>
                 <p class="lead"><b>04. <spam style="color: red" >A lista do dia anterior deve ser apagada manualmente pelos usuários entre 19:00 e 19:59.</spam> Para isso, use a opção 'Nova lista' no menu do sistema.</b>
                 </p>
-                <p class="lead"><b>05.</b> Sistema em fase de testes. Desenvolvido por: Roberto. Duvidas, reclamações ou sugestões: fale com ele.</p>
+                <p class="lead"><b>05.</b> Sistema em fase de testes. Desenvolvido por: Roberto Carlos. Duvidas, reclamações, propostas de emprego ou sugestões: <i class="fab fa-whatsapp"></i>  (84) 998629097. </p>
                 
               </div>
               <div class="modal-footer">
@@ -110,6 +110,13 @@
         {% if alerta3 %}
           <div class="lead alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
             Esse horário não é permitido para colocar o nome na lista! 
+          </div>
+        {% endif %}
+      </div>
+      <div class="col-md-12">
+        {% if alertacoderro %}
+          <div class="lead alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+            Você tem que colocar o código que foi usado para cadastrar seu nome! 
           </div>
         {% endif %}
       </div>
@@ -162,6 +169,7 @@
                           <th scope="col">Instituição</th>
                           <th scope="col">Situação</th>
                           <th scope="col">Data</th>
+                          <th scope="col">Código</th>
 
                           <th scope="col">Ação</th>
 
@@ -180,12 +188,18 @@
 
                           
                           <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <form method="post" action="{% url 'tirar' lista.id %}"> 
+                              {% csrf_token %}
+                              <div class="form-group">
+                                <input  class="form-control" id="codigoconfi" name="confirmacod">
+                              </div>
+                          </td>
+                          <td>
+                            <button class="btn btn-danger" value="concluir" name="botao" role="button"><i class='fas fa-trash-alt'></i></button>
                               
-                              <a href="{% url 'tirar' lista.id %}" class="btn btn-danger" role="button" ><i class='fas fa-trash-alt'></i></a>
-                          </div>
-                        </td>
-                        
+                             
+                            </form>
+                         </td>
                          
                       </tr>
                     
@@ -219,6 +233,7 @@
                           <th scope="col">Instituição</th>
                           <th scope="col">Situação</th>
                           <th scope="col">Data</th>
+                          <th scope="col">Código</th>
                           <th scope="col">Ação</th>
 
 
@@ -236,13 +251,19 @@
                           <td >{{ lista.get_situacao_display }}</td>
                           <td  >{{ lista.data }}</td>
                           
+                         <td>
+                            <form method="post" action="{% url 'tirar' lista.id %}"> 
+                              {% csrf_token %}
+                              <div class="form-group">
+                                <input  class="form-control " id="codigoconfi" name="confirmacod" >
+                              </div>
+                          </td>
                           <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <button class="btn btn-danger" value="concluir" name="botao" role="button"><i class='fas fa-trash-alt'></i></button>
                               
-                              <a href="{% url 'tirar' lista.id %}" class="btn btn-danger" role="button" ><i class='fas fa-trash-alt'></i></a>
-                            
-                          </div>
-                        </td>
+                             
+                            </form>
+                         </td>
                         
                          
                       </tr>
@@ -275,6 +296,7 @@
                           <th scope="col">Instituição</th>
                           <th scope="col">Situação</th>
                           <th scope="col">Data</th>
+                          <th scope="col">Código</th>
                           <th scope="col">Ação</th>
 
 
@@ -297,12 +319,18 @@
                           <td  >{{ lista.data }}</td>
                           
                           <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <form method="post" action="{% url 'tirar' lista.id %}"> 
+                              {% csrf_token %}
+                              <div class="form-group">
+                                <input  class="form-control" id="codigoconfi" name="confirmacod">
+                              </div>
+                          </td>
+                          <td>
+                            <button class="btn btn-danger" value="concluir" name="botao" role="button"><i class='fas fa-trash-alt'></i></button>
                               
-                              <a href="{% url 'tirar' lista.id %}" class="btn btn-danger" role="button" ><i class='fas fa-trash-alt'></i></a>
-                            
-                          </div>
-                        </td>
+                             
+                            </form>
+                         </td>
                         
                          
                       </tr>
@@ -336,6 +364,7 @@
                           <th scope="col">Instituição</th>
                           <th scope="col">Situação</th>
                           <th scope="col">Data</th>
+                          <th scope="col">Código</th>
                           <th scope="col">Ação</th>
 
                         </tr>
@@ -353,12 +382,18 @@
                           <td  >{{ lista.data }}</td>
                           
                           <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <form method="post" action="{% url 'tirar' lista.id %}"> 
+                              {% csrf_token %}
+                              <div class="form-group">
+                                <input  class="form-control" id="codigoconfi" name="confirmacod">
+                              </div>
+                          </td>
+                          <td>
+                            <button class="btn btn-danger" value="concluir" name="botao" role="button"><i class='fas fa-trash-alt'></i></button>
                               
-                              <a href="{% url 'tirar' lista.id %}" class="btn btn-danger" role="button" ><i class='fas fa-trash-alt'></i></a>
-                            
-                          </div>
-                        </td>
+                             
+                            </form>
+                         </td>
                         
                          
                       </tr>
@@ -382,7 +417,7 @@
           <div class="tab-pane fade  " id="cl" role="tabpanel" aria-labelledby="home-tab">
       <div class="row">
         <div class="mt-2 col-12  ">
-          <form  action="{% url 'cadastrar' %}" method="POST" class="form-group"  >
+          <form  action="{% url 'cadastrar' %}" method="POST" class="form-group "  >
              {%csrf_token%}
                    
             <div class="form-row">
@@ -419,11 +454,18 @@
            
                   </select>               
               </div>
+              <div class="form-group col-md-3">
+                <label for="id_nome">Código <small>(será necessário caso você precise retirar o nome da lista)</small> </label>
+                <input class="form-control"   type="text" name="cod" maxlength="8" required >
+               
+                  
+           
+              </div>
 
                        
           </div> 
-          <div class="form-group">            
-            <button  class="btn btn-primary float-right" type="submit" name="button">Adicionar</button> 
+          <div class="form-group ">            
+            <button  class="btn btn-primary float-right mb-2" type="submit" name="button">Adicionar</button> 
           </div>                                     
           </form>     
         </div>

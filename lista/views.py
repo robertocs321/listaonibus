@@ -27,13 +27,13 @@ def listar (request):
 		aux = aux+1
 	for y in lista5:
 		aux2 = aux2+1
-	if aux>40:
+	if aux>29:
 		cor="danger"
 		classe='frown'
-	if aux2>40:
+	if aux2>29:
 		cor="danger"
 		classe='frown'
-	if aux==40 or aux2==40:
+	if aux==29 or aux2==29:
 		cor="warning"
 		classe='grimace'
 	
@@ -47,10 +47,22 @@ def listar (request):
 
 def tirar(request, id):
 	aux2=id
+	#cod=cod	
 	try:
 		aux = Aluno.objects.get(id=id)
-		aux.delete()
-		return redirect('menu')
+		print(aux.cod)
+		codigo =  request.POST['confirmacod']
+		
+		if aux.cod == codigo:
+			aux.delete()
+			return redirect('menu')
+
+		lista0 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
+		lista1 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
+		lista2 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
+		lista3 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
+		return render(request, 'main.html',{'alertacoderro':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
+			
 	except :
 		return redirect('menu')
 
@@ -68,7 +80,6 @@ def novalista(request):
 		return redirect('menu')
 	lista0 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
 	lista1 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
-
 	lista2 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
 	lista3 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
 	return render(request, 'main.html',{'alerta2':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
@@ -92,6 +103,9 @@ def cadastrar(request):
 		acao = request.POST['acao']
 		instituicao = request.POST['instituicao']
 		situacao = request.POST['situacao']
+		codigo = request.POST['cod']
+
+
 
 		if hora1 == 19:
 			lista0 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
@@ -107,13 +121,13 @@ def cadastrar(request):
 			lista2 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
 			lista3 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
 			if acao=='2':
-				Aluno.objects.create(nome=nome, acao='1', instituicao=instituicao, situacao='2')
-				Aluno.objects.create(nome=nome, acao='3', instituicao=instituicao, situacao='2')
+				Aluno.objects.create(nome=nome, acao='1', instituicao=instituicao, situacao='2', cod=codigo)
+				Aluno.objects.create(nome=nome, acao='3', instituicao=instituicao, situacao='2', cod=codigo)
 				if situacao=='1':
 					return render(request, 'main.html',{'alerta':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
 				return redirect('menu')
 
-			Aluno.objects.create(nome=nome, acao=acao, instituicao=instituicao, situacao='2')
+			Aluno.objects.create(nome=nome, acao=acao, instituicao=instituicao, situacao='2', cod=codigo)
 			if situacao=='1':
 				return render(request, 'main.html',{'alerta':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
 			
@@ -121,11 +135,11 @@ def cadastrar(request):
 
 
 		if acao=='2':
-			Aluno.objects.create(nome=nome, acao='1', instituicao=instituicao, situacao=situacao)
-			Aluno.objects.create(nome=nome, acao='3', instituicao=instituicao, situacao=situacao)
+			Aluno.objects.create(nome=nome, acao='1', instituicao=instituicao, situacao=situacao, cod=codigo)
+			Aluno.objects.create(nome=nome, acao='3', instituicao=instituicao, situacao=situacao, cod=codigo)
 			return redirect('menu')
 			
-		Aluno.objects.create(nome=nome, acao=acao, instituicao=instituicao, situacao=situacao)
+		Aluno.objects.create(nome=nome, acao=acao, instituicao=instituicao, situacao=situacao, cod=codigo)
 
 		return redirect('menu')
 	
