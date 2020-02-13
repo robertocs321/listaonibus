@@ -27,13 +27,13 @@ def listar (request):
 		aux = aux+1
 	for y in lista5:
 		aux2 = aux2+1
-	if aux>29:
+	if aux>40:
 		cor="danger"
 		classe='frown'
-	if aux2>29:
+	if aux2>40:
 		cor="danger"
 		classe='frown'
-	if aux==29 or aux2==29:
+	if aux==40 or aux2==40:
 		cor="warning"
 		classe='grimace'
 	
