@@ -114,7 +114,7 @@ def cadastrar(request):
 			lista3 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
 			return render(request, 'main.html',{'alerta3':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
 
-		if 11 <= hora1 <= 18:
+		if 10 <= hora1 <= 18:
 			lista0 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
 			lista1 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
 

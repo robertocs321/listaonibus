@@ -71,7 +71,7 @@
               </div>
               <div class="modal-body" >
 
-                <p class="lead"><b>01.</b> O sistema não permite que o usuário coloque seu nome na lista, como <b>cadastrado</b>,  entre 11 e 20h.</p>
+                <p class="lead"><b>01.</b> O sistema não permite que o usuário coloque seu nome na lista, como <b>cadastrado</b>,  entre 10 e 20h.</p>
                 <p class="lead"><b>02.</b> O aluno que colocou o nome na lista e não for usar o ônibus deve apagar seu nome da lista (na tabela tem uma lixeira no canto direito).</p>
                 <p class="lead"><b>03.</b> O sistema mostra dois conjuntos de listas, a primeira é a lista de quem pretende ir (para Caicó) no ônibus e a outra, que está abaixo, é a de quem pretende voltar (para Jardim) no ônibus. Se você escolher a opção "Ida e volta" o seu nome será colocado nas duas listas.</p>
                 <p class="lead"><b>04. <spam style="color: red" >A lista do dia anterior deve ser apagada manualmente pelos usuários entre 19:00 e 19:59.</spam> Para isso, use a opção 'Nova lista' no menu do sistema.</b>
@@ -191,7 +191,7 @@
                             <form method="post" action="{% url 'tirar' lista.id %}"> 
                               {% csrf_token %}
                               <div class="form-group">
-                                <input  class="form-control" id="codigoconfi" name="confirmacod">
+                                <input  class="form-control" id="codigoconfi" maxlength="8" name="confirmacod">
                               </div>
                           </td>
                           <td>
@@ -255,7 +255,7 @@
                             <form method="post" action="{% url 'tirar' lista.id %}"> 
                               {% csrf_token %}
                               <div class="form-group">
-                                <input  class="form-control " id="codigoconfi" name="confirmacod" >
+                                <input  class="form-control " id="codigoconfi" maxlength="8" name="confirmacod" >
                               </div>
                           </td>
                           <td>
@@ -322,7 +322,7 @@
                             <form method="post" action="{% url 'tirar' lista.id %}"> 
                               {% csrf_token %}
                               <div class="form-group">
-                                <input  class="form-control" id="codigoconfi" name="confirmacod">
+                                <input  class="form-control" id="codigoconfi" maxlength="8" name="confirmacod">
                               </div>
                           </td>
                           <td>
@@ -385,7 +385,7 @@
                             <form method="post" action="{% url 'tirar' lista.id %}"> 
                               {% csrf_token %}
                               <div class="form-group">
-                                <input  class="form-control" id="codigoconfi" name="confirmacod">
+                                <input  class="form-control" id="codigoconfi" maxlength="8" name="confirmacod">
                               </div>
                           </td>
                           <td>
@@ -442,6 +442,10 @@
                   <option >UFRN</option>
                   <option >UERN</option>
                   <option >UNP</option>
+                  <option >FCST</option>
+                  <option >Unopar</option>
+                  <option >FACESA</option>
+                  <option >Curso Téc.</option>
                   <option >Outra</option>               
                   </select>               
               </div>
