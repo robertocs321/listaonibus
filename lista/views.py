@@ -105,22 +105,38 @@ def cadastrar(request):
 		instituicao = request.POST['instituicao']
 		situacao = request.POST['situacao']
 		codigo = request.POST['cod']
+		
+		lista0 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
+		lista1 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
+		lista2 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
+		lista3 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
+		listav = Aluno.objects.all().filter(acao=Aluno.VOLTA)
+		listai = Aluno.objects.all().filter(acao=Aluno.IDA)
+		if acao =="1":	
+			for i in listai:
+				if nome == i.nome:
+					return render(request, 'main.html',{'alertanomeexistente':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
+		if acao =="3":
+			for v in listav:
+				if nome == v.nome:
+					return render(request, 'main.html',{'alertanomeexistente':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
+		if acao =="2":
+			for i in listai:
+				if nome == i.nome:
+					return render(request, 'main.html',{'alertanomeexistente':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
+			for v in listav:
+				if nome == v.nome:
+					return render(request, 'main.html',{'alertanomeexistente':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
+			
 
 
 
 		if hora1 == 19:
-			lista0 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
-			lista1 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
-			lista2 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
-			lista3 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
+			
 			return render(request, 'main.html',{'alerta3':'ok', "cadastrados": lista0,'caronas': lista2, 'cadastradosi':lista1, 'caronasi':lista3})
 
 		if 10 <= hora1 <= 18:
-			lista0 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.VOLTA)
-			lista1 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CADASTRADO, acao=Aluno.IDA)
-
-			lista2 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.VOLTA)
-			lista3 = Aluno.objects.all().order_by('data').filter(situacao=Aluno.CARONA,acao=Aluno.IDA)
+			
 			if acao=='2':
 				Aluno.objects.create(nome=nome, acao='1', instituicao=instituicao, situacao='2', cod=codigo)
 				Aluno.objects.create(nome=nome, acao='3', instituicao=instituicao, situacao='2', cod=codigo)

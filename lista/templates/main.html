@@ -120,6 +120,13 @@
           </div>
         {% endif %}
       </div>
+      <div class="col-md-12">
+        {% if alertanomeexistente %}
+          <div class="lead alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+            Esse nome já foi colocado na lista! 
+          </div>
+        {% endif %}
+      </div>
     <div class="col-md-12">
         {% if totali or totalv %}
           <div class="lead alert alert-{{cor}}" role="alert"><i class="far fa-{{classe}}"></i>
